@@ -1,7 +1,7 @@
 var express = require('express');
 var morgan = require('morgan');
 var path = require('path');
-//var Pool = require('pg').Pool;
+var Pool = require('pg').Pool;
 var crypto = require('crypto');
 var bodyParser = require('body-parser');
 var session = require('express-session');
@@ -48,11 +48,11 @@ function createTemplate (req, data) {
 }
 
 app.get('/', function (req, res) {
-	//res.sendFile(path.join(__dirname, 'ui', 'index.html'));
-	res.send('index.html');
+	res.sendFile(path.join(__dirname, 'ui', 'index.html'));
+	//res.send('index.html');
 });
 
-//var pool = new Pool(config);
+var pool = new Pool(config);
 var counter;
 
 app.get('/counter', function (req, res) {
@@ -69,13 +69,13 @@ app.get('/counter', function (req, res) {
 
 });
 
-/*pool.query('SELECT * from visitors', function(err, result){
+pool.query('SELECT * from visitors', function(err, result){
 	if (err){
 		return(err.toString());
 	} else {
 		counter = result.rows[0].footfall;
 	}
-});*/
+});
 
 app.get('/currentctr', function (req, res) {
 	res.send(counter.toString());
