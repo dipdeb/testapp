@@ -56,8 +56,11 @@ var pool = new Pool(config);
 var counter;
 
 app.get('/counter', function (req, res) {
+	//counter = parseInt(counter) + 1;
 	counter = parseInt(counter) + 1;
 	res.send(counter.toString());
+
+	console.log(counter);
 
 	pool.query('UPDATE visitors SET footfall='+counter, function(err, results){
         if (err){
