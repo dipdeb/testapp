@@ -77,6 +77,7 @@ pool.query('SELECT * from visitors', function(err, result){
 		return(err.toString());
 	} else {
 		counter = result.rows[0].footfall;
+console.log('Init counter: ' + counter);
 	}
 });
 
