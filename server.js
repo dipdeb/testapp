@@ -63,8 +63,8 @@ app.get('/counter', function (req, res) {
         if (err){
             return(err.toString());
         } else {
-                console.log("");
-            }
+                console.log("Updated successfully");
+        }
     });
 
 });
