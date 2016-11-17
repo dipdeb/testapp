@@ -12,11 +12,6 @@ const params = url.parse(process.env.DATABASE_URL);
 const auth = params.auth.split(':');
 
 var config = {
-	/*user: 'dipdeb',
-	database: 'dipdeb',
-	host: 'db.imad.hasura-app.io',
-	port: '5432',
-	password: process.env.DB_PASSWORD*/
 	user: auth[0],
 	password: auth[1],
 	host: params.hostname,
@@ -53,10 +48,11 @@ function createTemplate (req, data) {
 }
 
 app.get('/', function (req, res) {
-	res.sendFile(path.join(__dirname, 'ui', 'index.html'));
+	//res.sendFile(path.join(__dirname, 'ui', 'index.html'));
+	res.send('index.html');
 });
 
-var pool = new Pool(config);
+//var pool = new Pool(config);
 var counter;
 
 app.get('/counter', function (req, res) {
@@ -73,13 +69,13 @@ app.get('/counter', function (req, res) {
 
 });
 
-pool.query('SELECT * from visitors', function(err, result){
+/*pool.query('SELECT * from visitors', function(err, result){
 	if (err){
 		return(err.toString());
 	} else {
 		counter = result.rows[0].footfall;
 	}
-});
+});*/
 
 app.get('/currentctr', function (req, res) {
 	res.send(counter.toString());
