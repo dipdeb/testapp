@@ -74,11 +74,11 @@ app.get('/counter', function (req, res) {
 
 pool.query('SELECT * from visitors', function(err, result){
 	if (err){
-console.log('Init counter: ' + err);
+console.log('++++ Init counter: ' + err);
 		return(err.toString());
 	} else {
 		counter = result.rows[0].footfall;
-console.log('Init counter: ' + counter);
+console.log('++++ Init counter: ' + counter);
 	}
 });
 
