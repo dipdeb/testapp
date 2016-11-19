@@ -120,7 +120,6 @@ app.post('/create_article', function (req, res) {
 	var title = req.body.title;
 	var content = req.body.content;
 	
-	//content = '<p>'+removeTags(content)+'</p>';
 	content = '<p>'+content+'</p>';
 	var userId = req.session.auth.userId;
 	pool.query("insert into article(title, user_id, heading, date, content) values($1, $2, $3, $4, $5)", [title, userId, title, new Date(), content], function (err, result) {
@@ -297,7 +296,7 @@ function removeTags(html) {
   var oldHtml;
   do {
     oldHtml = html;
-console.log(html)
+//console.log(html)
     html = html.replace(tagOrComment, '');
   } while (html !== oldHtml);
   return html.replace(/</g, '&lt;');
